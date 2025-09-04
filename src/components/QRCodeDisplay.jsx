@@ -19,7 +19,7 @@ const QRCodeDisplay = () => {
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/4/41/QR_Code_Example.svg"
           alt="QR Code" 
-          className="w-64 h-64 p-4 border-4 border-black rounded-lg"
+          className="w-70 h-70 p-4 border-4 border-black rounded-lg"
         />
       </div>
 

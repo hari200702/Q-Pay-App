@@ -1,7 +1,7 @@
 import React from 'react';
-import tapImage from "../assets/pay.jpg"
+import tapImage from "../assets/tap.jpg"
 
-const PromoBanner = () => {
+const Promobanner1 = () => {
   return (
     <div className="bg-green-600 rounded-2xl overflow-hidden mb-8 relative">
       <div className="flex items-center h-[290px]">
@@ -37,4 +37,4 @@ const PromoBanner = () => {
   );
 };
 
-export default PromoBanner;
+export default Promobanner1;
