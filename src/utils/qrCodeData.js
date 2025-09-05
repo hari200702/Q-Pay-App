@@ -1,3 +1,5 @@
+// utils/qrCodeData.js
+
 export const activeQRCodes = [
   {
     id: 'Q201946579',
@@ -48,10 +50,9 @@ export const qrRequests = [
   }
 ];
 
-
-export const QR_REQUEST_STATUS = {
-  ACCEPTED: 'QR Request Accepted',
-  PENDING: 'QR Request Pending',
-  REJECTED: 'QR Request Rejected',
-  PROCESSING: 'QR Request Processing'
-};
+export const QR_REQUEST_STATUS_OPTIONS = [
+  'QR Request Accepted',
+  'Awaiting Production',
+  'Awaiting Dispatch',
+  'Awaiting Delivery'
+];
