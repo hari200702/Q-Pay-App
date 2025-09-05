@@ -4,62 +4,69 @@ import PieChart from '../components/PieChart';
 import QRSection from '../components/QRSection';
 import TransactionList from '../components/TransactionList';
 import PromoBanner from '../components/PromoBanner';
+import { 
+  statsData, 
+  settlementData, 
+  transactionData, 
+  SETTLEMENT_TOTAL, 
+  TRANSACTION_TOTAL 
+} from '../utils/homePageData';
 
 const HomePage = () => {
-  const stats = [
-    { number: '1.5k', label: 'Account Holders' },
-    { number: '2.1k', label: 'Transactions' },
-    { number: '2.3k', label: 'Settlement' },
-    { number: '45k', label: 'QR Orders' }
-  ];
+  const handleSettleNow = () => {
+    console.log('Settle now clicked');
+  };
 
-  const settlementData = [
-    { name: 'Ibrahim', date: '23 Oct, 09:15 AM', amount: '+₹90' },
-    { name: 'Ibrahim', date: '23 Oct, 09:15 AM', amount: '+₹90' },
-    { name: 'Ibrahim', date: '23 Oct, 09:15 AM', amount: '+₹90' },
-  ];
-
-  const transactionData = [
-    { name: 'Ibrahim', date: '23 Oct, 09:15 AM', amount: '+₹90' },
-    { name: 'Ibrahim', date: '23 Oct, 09:15 AM', amount: '+₹90' },
-    { name: 'Ibrahim', date: '23 Oct, 09:15 AM', amount: '+₹90' },
-  ];
+  const handleViewAllTransactions = () => {
+    console.log('View all transactions clicked');
+  };
 
   return (
     <div>
-      {/* Top Card Section - Leave empty for now */}
-      <PromoBanner />
+    
+      <div className="hidden md:block transition-transform transform hover:scale-105 hover:shadow-lg">
+        <PromoBanner />
+      </div>
 
 
-      {/* Stats Section */}
-      <div className="grid grid-cols-4 gap-4 mb-8">
-        {stats.map((stat, index) => (
-          <StatsCard key={index} number={stat.number} label={stat.label} />
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
+        {statsData.map((stat) => (
+          <div 
+            key={stat.id} 
+            className="transition-transform transform hover:scale-105 hover:shadow-lg"
+          >
+            <StatsCard 
+              number={stat.number} 
+              label={stat.label} 
+              trend={stat.trend}
+            />
+          </div>
         ))}
       </div>
 
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg p-6 border border-gray-200">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+        <div className="bg-white rounded-lg p-4 md:p-6 border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-lg">
           <PieChart />
         </div>
-        <div className="bg-white rounded-lg p-6 border border-gray-200">
+        <div className="bg-white rounded-lg p-4 md:p-6 border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-lg">
           <QRSection />
         </div>
-        <div className="bg-white rounded-lg p-6 border border-gray-200">
+        <div className="bg-white rounded-lg p-4 md:p-6 border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-lg">
           <TransactionList 
             title="SETTLEMENT" 
-            total="₹1,23,816.19" 
+            total={SETTLEMENT_TOTAL} 
             data={settlementData}
             buttonText="Settle Now"
+            onButtonClick={handleSettleNow}
           />
         </div>
-        <div className="bg-white rounded-lg p-6 border border-gray-200">
+        <div className="bg-white rounded-lg p-4 md:p-6 border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-lg">
           <TransactionList 
             title="TOTAL TRANSACTIONS" 
-            total="₹1,23,816.19" 
+            total={TRANSACTION_TOTAL} 
             data={transactionData}
             buttonText="View All"
+            onButtonClick={handleViewAllTransactions}
           />
         </div>
       </div>

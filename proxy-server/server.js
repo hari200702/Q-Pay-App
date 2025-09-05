@@ -8,15 +8,15 @@ const app = express();
 const PORT = process.env.PROXY_PORT || 3001;
 
 const TOKEN = process.env.TOKEN || 'YOUR_TOKEN_HERE';
-console.log(TOKEN)
-// Create axios instance with SSL verification disabled
+
+
 const axiosInstance = axios.create({
   httpsAgent: new https.Agent({  
-    rejectUnauthorized: false // Disable SSL verification (like Postman)
+    rejectUnauthorized: false
   })
 });
 
-// Enable CORS for your React app
+
 app.use(cors());
 app.use(express.json());
 
@@ -27,8 +27,7 @@ app.get('/proxy/*', async (req, res) => {
     const queryString = req.url.includes('?') ? req.url.substring(req.url.indexOf('?')) : '';
     const apiUrl = `http://64.227.189.27${apiPath}${queryString}`;
     
-    console.log('Proxying to:', apiUrl);
-    console.log('Using token:', TOKEN.substring(0, 10) + '...');
+    
     
     const response = await axiosInstance.get(apiUrl, {
       headers: {
@@ -36,7 +35,7 @@ app.get('/proxy/*', async (req, res) => {
         'Accept': '*/*',
         'User-Agent': 'PostmanRuntime/7.45.0'
       },
-      timeout: 10000 // 10 second timeout
+      timeout: 10000
     });
     
     console.log('Response status:', response.status);

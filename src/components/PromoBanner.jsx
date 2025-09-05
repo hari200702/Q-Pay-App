@@ -5,7 +5,6 @@ const PromoBanner = () => {
   return (
     <div className="bg-green-600 rounded-2xl overflow-hidden mb-8 relative">
       <div className="flex items-center h-[290px]">
-        {/* Left Section - Text Content */}
         <div className="flex-1 p-8 text-white z-10">
           <h2 className="text-4xl font-bold mb-3">
             Pay ₹1/month* for the QPay<br />
@@ -18,13 +17,9 @@ const PromoBanner = () => {
             Download App Now!
           </button>
         </div>
-
-        {/* Diagonal Shape */}
         <div className="absolute top-0 right-0 w-1/4 h-full overflow-hidden">
           <div className="absolute inset-0 bg-white transform skew-x-[-15deg] translate-x-10"></div>
         </div>
-
-        {/* Right Section - Image */}
         <div className="relative z-10 pr-8">
           <img
             src={tapImage}

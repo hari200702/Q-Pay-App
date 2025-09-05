@@ -4,13 +4,12 @@ import {
   HomeIcon, 
   QrCodeIcon, 
   ClockIcon, 
-  UserCircleIcon 
+  UserCircleIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline';
-
-// ✅ Import your bottom image
 import bottomLogo from "../assets/bottom.png";
 
-const Sidebar = () => {
+const Sidebar = ({ onCloseSidebar }) => {
   const menuItems = [
     { path: '/', label: 'Home', icon: HomeIcon },
     { path: '/qr', label: 'QR', icon: QrCodeIcon },
@@ -18,13 +17,18 @@ const Sidebar = () => {
     { path: '/profile', label: 'Profile', icon: UserCircleIcon }
   ];
 
+  const handleNavClick = () => {
+    if (window.innerWidth < 1024) {
+      onCloseSidebar?.();
+    }
+  };
+
   return (
     <aside 
-      className="w-56 h-full flex flex-col" 
+      className="w-64 lg:w-56 h-full flex flex-col" 
       style={{ backgroundColor: '#4A8B5C' }}
     >
-      {/* Logo Section */}
-      <div className="p-6">
+      <div className="p-6 flex items-center justify-between">
         <div className="text-white text-2xl font-bold flex items-center">
           <span 
             className="bg-white w-10 h-10 rounded-lg flex items-center justify-center mr-2 font-bold text-3xl" 
@@ -34,9 +38,13 @@ const Sidebar = () => {
           </span>
           <span>Pay</span>
         </div>
+        <button
+          onClick={onCloseSidebar}
+          className="lg:hidden text-white hover:bg-green-700 hover:bg-opacity-50 p-2 rounded-lg"
+        >
+          <XMarkIcon className="w-6 h-6" />
+        </button>
       </div>
-      
-      {/* Navigation */}
       <nav className="flex-1 px-3">
         {menuItems.map((item) => {
           const Icon = item.icon;
@@ -44,6 +52,7 @@ const Sidebar = () => {
             <NavLink
               key={item.path}
               to={item.path}
+              onClick={handleNavClick}
               className={({ isActive }) =>
                 `flex items-center px-4 py-3 mb-2 rounded-lg transition-all ${
                   isActive
@@ -63,13 +72,11 @@ const Sidebar = () => {
           );
         })}
       </nav>
-
-      {/* ✅ Bottom Image Section */}
       <div className="bg-white py-4 flex items-center justify-center">
         <img 
           src={bottomLogo} 
           alt="Bharat Connect Logo" 
-          className="h-10 object-contain"
+          className="h-8 lg:h-10 object-contain"
         />
       </div>
     </aside>

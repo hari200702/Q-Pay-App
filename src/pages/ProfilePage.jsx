@@ -1,105 +1,53 @@
-import React from 'react';
-import {
-  BuildingLibraryIcon,
-  DocumentTextIcon,
-  ShieldCheckIcon,
-  ShoppingCartIcon,
-  CpuChipIcon,
-  CreditCardIcon,
-  CogIcon,
-  UsersIcon,
-  LanguageIcon
-} from '@heroicons/react/24/outline';
 
+import React from 'react';
 import Promobanner1 from '../components/Promobanner1';
+import { profileCards, businessServices, manageBusinessItems } from '../utils/profileData';
 
 const ProfilePage = () => {
-  const profileCards = [
-    {
-      icon: BuildingLibraryIcon,
-      title: 'XXXX 9820',
-      subtitle: 'ICICI Bank | Chennai',
-      description: 'Egmore Branch'
-    },
-    {
-      icon: DocumentTextIcon,
-      title: 'Business Profile',
-      subtitle: 'View and edit your',
-      description: 'business details'
-    },
-    {
-      icon: ShieldCheckIcon,
-      title: 'KYC Verification',
-      subtitle: 'Unlock exclusive',
-      description: 'benefits with KYC'
-    },
-    {
-      icon: ShoppingCartIcon,
-      title: 'Order QR',
-      subtitle: 'Get paid, manage &',
-      description: 'order QRs'
-    }
-  ];
-
-  const businessServices = [
-    { icon: CpuChipIcon, label: 'Smart Speaker' },
-    { icon: CreditCardIcon, label: 'POS Machine' }
-  ];
-
-  const manageBusinessItems = [
-    { icon: CogIcon, label: 'Payment Settings' },
-    { icon: UsersIcon, label: 'Manage Staff' },
-    { icon: LanguageIcon, label: 'Change Language' }
-  ];
-
   return (
     <div>
-      {/* Banner Section - Empty space like HomePage */}
-      <div className="mb-8">
+      <div className="hidden md:block mb-8 transition-transform transform hover:scale-105 hover:shadow-lg">
         <Promobanner1 />
       </div>
 
-      {/* Profile Cards Grid */}
-      {/* Profile Cards Grid */}
-      <div className="grid grid-cols-4 gap-4 mb-8">
-        {profileCards.map((card, index) => {
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
+        {profileCards.map((card) => {
           const Icon = card.icon;
           return (
             <div
-              key={index}
-              className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer"
+              key={card.id}
+              className="bg-white rounded-xl p-4 md:p-6 shadow-sm border border-gray-100 
+                         cursor-pointer transition-transform transform 
+                         hover:scale-105 hover:shadow-lg"
             >
-              <div className="flex justify-between items-start mb-4">
-                {/* Green circular icon */}
-                <div className="bg-green-100 p-3 rounded-full">
-                  <Icon className="w-6 h-6 text-green-700" />
+              <div className="flex justify-between items-start mb-3 md:mb-4">
+                <div className="bg-green-100 p-2 md:p-3 rounded-full">
+                  <Icon className="w-5 h-5 md:w-6 md:h-6 text-green-700" />
                 </div>
-                {/* Arrow in green */}
-                <span className="text-green-600 text-2xl">›</span>
+                <span className="text-green-600 text-xl md:text-2xl">›</span>
               </div>
-              {/* All text in green */}
-              <h3 className="font-semibold text-green-700 mb-1">{card.title}</h3>
-              <p className="text-sm text-green-600">{card.subtitle}</p>
-              <p className="text-sm text-green-600">{card.description}</p>
+              <h3 className="font-semibold text-green-700 mb-1 text-sm md:text-base">{card.title}</h3>
+              <p className="text-xs md:text-sm text-green-600">{card.subtitle}</p>
+              <p className="text-xs md:text-sm text-green-600">{card.description}</p>
             </div>
           );
         })}
       </div>
 
-
-      {/* Business Services and Manage Business Section */}
-      {/* Business Services and Manage Business Section */}
-      <div className="grid grid-cols-2 gap-6">
-        {/* Business Services */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-          <h2 className="text-xs font-medium text-gray-500 uppercase mb-8">Business Services</h2>
-          <div className="flex gap-8">
-            {businessServices.map((service, index) => {
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm border border-gray-100">
+          <h2 className="text-xs font-medium text-gray-500 uppercase mb-6 md:mb-8">Business Services</h2>
+          <div className="flex justify-around md:gap-8 md:justify-start">
+            {businessServices.map((service) => {
               const Icon = service.icon;
               return (
-                <div key={index} className="text-center cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
-                  <div className="bg-gray-100 w-14 h-14 rounded-lg flex items-center justify-center mx-auto mb-2">
-                    <Icon className="w-7 h-7 text-gray-700" />
+                <div 
+                  key={service.id}
+                  className="text-center cursor-pointer hover:bg-gray-50 
+                             p-2 rounded-lg transition-colors"
+                >
+                  <div className="bg-gray-100 w-12 h-12 md:w-14 md:h-14 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <Icon className="w-6 h-6 md:w-7 md:h-7 text-gray-700" />
                   </div>
                   <p className="text-xs text-gray-700">{service.label}</p>
                 </div>
@@ -108,16 +56,19 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        {/* Manage Business */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-          <h2 className="text-xs font-medium text-gray-500 uppercase mb-8">Manage Business</h2>
-          <div className="flex gap-8">
-            {manageBusinessItems.map((item, index) => {
+        <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm border border-gray-100">
+          <h2 className="text-xs font-medium text-gray-500 uppercase mb-6 md:mb-8">Manage Business</h2>
+          <div className="flex justify-around md:gap-8 md:justify-start">
+            {manageBusinessItems.map((item) => {
               const Icon = item.icon;
               return (
-                <div key={index} className="text-center cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
-                  <div className="bg-gray-100 w-14 h-14 rounded-lg flex items-center justify-center mx-auto mb-2">
-                    <Icon className="w-7 h-7 text-gray-700" />
+                <div 
+                  key={item.id}
+                  className="text-center cursor-pointer hover:bg-gray-50 
+                             p-2 rounded-lg transition-colors"
+                >
+                  <div className="bg-gray-100 w-12 h-12 md:w-14 md:h-14 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <Icon className="w-6 h-6 md:w-7 md:h-7 text-gray-700" />
                   </div>
                   <p className="text-xs text-gray-700">{item.label}</p>
                 </div>

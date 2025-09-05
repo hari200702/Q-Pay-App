@@ -63,7 +63,6 @@ const HistoryTable = ({ columns, data, globalFilter }) => {
         </table>
       </div>
 
-      {/* Pagination - styled with page background color */}
       <div className="bg-gray-50 -mx-6 -mb-6 mt-4 px-4 py-3 rounded-b-xl">
         <div className="flex items-center justify-center">
           <div className="flex items-center">
@@ -74,7 +73,6 @@ const HistoryTable = ({ columns, data, globalFilter }) => {
             >
               <span className="text-lg font-bold">&lt;</span>
             </button>
-            
             <div className="flex space-x-1">
               {[...Array(table.getPageCount())].map((_, i) => (
                 <button
@@ -82,7 +80,7 @@ const HistoryTable = ({ columns, data, globalFilter }) => {
                   onClick={() => table.setPageIndex(i)}
                   className={`w-8 h-8 rounded-full transition-colors ${
                     i === table.getState().pagination.pageIndex
-                      ? 'bg-green-600 text-white' 
+                      ? 'bg-green-600 text-white'
                       : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
                   }`}
                 >
@@ -90,7 +88,6 @@ const HistoryTable = ({ columns, data, globalFilter }) => {
                 </button>
               ))}
             </div>
-
             <button
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
