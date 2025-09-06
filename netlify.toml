@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "dist"  # ⚠️ since you’re using Vite, not React scripts
+  publish = "dist"
 
 [functions]
   directory = "netlify/functions"
@@ -9,3 +9,9 @@
   from = "/proxy/*"
   to = "/.netlify/functions/proxy/:splat"
   status = 200
+  force = true
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"

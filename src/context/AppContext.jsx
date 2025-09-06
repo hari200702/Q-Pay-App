@@ -24,38 +24,40 @@ export const AppProvider = ({ children }) => {
   const [globalFilter, setGlobalFilter] = useState('');
   const [hasLoadedTransactions, setHasLoadedTransactions] = useState(false);
 
-  const fetchTransactionHistory = async (page = 0, forceRefresh = false) => {
-    try {
-
-      if (hasLoadedTransactions && !forceRefresh && transactions.length > 0) {
-        return transactions;
-      }
-
-      setTransactionLoading(true);
-      setTransactionError(null);
-      
-      const response = await fetch(
-        `/proxy/wallet/api/v1/transaction_history?service_id=111&page=${page}`
-      );
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const result = await response.json();
-      if (result.status && result.data) {
-        setTransactions(result.data);
-        setHasLoadedTransactions(true);
-        return result.data;
-      }
-    } catch (error) {
-      console.error('Error fetching transaction history:', error);
-      setTransactionError(error.message);
-      setTransactions([]);
-    } finally {
-      setTransactionLoading(false);
+const fetchTransactionHistory = async (page = 0, forceRefresh = false) => {
+  try {
+    if (hasLoadedTransactions && !forceRefresh && transactions.length > 0) {
+      return transactions;
     }
-  };
+
+    setTransactionLoading(true);
+    setTransactionError(null);
+    
+    // Use the proxy endpoint
+    const response = await fetch(
+      `/proxy/wallet/api/v1/transaction_history?service_id=111&page=${page}`
+    );
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Response not ok:', errorText);
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    if (result.status && result.data) {
+      setTransactions(result.data);
+      setHasLoadedTransactions(true);
+      return result.data;
+    }
+  } catch (error) {
+    console.error('Error fetching transaction history:', error);
+    setTransactionError(error.message);
+    setTransactions([]);
+  } finally {
+    setTransactionLoading(false);
+  }
+};
 
   const value = {
     user,
