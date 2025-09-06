@@ -17,7 +17,7 @@ const PromoBanner = () => {
             Download App Now!
           </button>
         </div>
-        <div className="absolute top-0 right-0 w-1/4 h-full overflow-hidden">
+        <div className="absolute top-0 right-0 w-[30%] h-full overflow-hidden">
           <div className="absolute inset-0 bg-white transform skew-x-[-15deg] translate-x-10"></div>
         </div>
         <div className="relative z-10 pr-8">
