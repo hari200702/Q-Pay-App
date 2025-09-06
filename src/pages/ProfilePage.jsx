@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Promobanner1 from '../components/Promobanner1';
-import { profileCards, businessServices, manageBusinessItems } from '../utils/profileData';
+import { profileCards, businessServices, manageBusinessItems } from '../utils/profiledata';
 
 const ProfilePage = () => {
   return (
