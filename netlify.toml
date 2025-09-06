@@ -1,9 +1,10 @@
 [build]
-  command = "npm run build"
+  command = "npm run build && cd netlify/functions && npm install"
   publish = "dist"
 
 [functions]
   directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/proxy/*"
@@ -11,7 +12,6 @@
   status = 200
   force = true
 
-# Add this for SPA routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
