@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"  # ⚠️ since you’re using Vite, not React scripts
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/proxy/*"
+  to = "/.netlify/functions/proxy/:splat"
+  status = 200

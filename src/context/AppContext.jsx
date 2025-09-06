@@ -35,7 +35,7 @@ export const AppProvider = ({ children }) => {
       setTransactionError(null);
       
       const response = await fetch(
-        `http://localhost:3001/proxy/wallet/api/v1/transaction_history?service_id=111&page=${page}`
+        `/proxy/wallet/api/v1/transaction_history?service_id=111&page=${page}`
       );
       
       if (!response.ok) {
