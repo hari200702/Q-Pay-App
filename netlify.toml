@@ -11,6 +11,12 @@
   status = 200
   force = true
 
+# Add this for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 [[headers]]
   for = "/.netlify/functions/*"
   [headers.values]
